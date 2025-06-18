@@ -1,26 +1,26 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        classpath 'com.android.tools.build:gradle:8.8.0'
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
 ext {
     minSdkVersion = 14
-    compileSdkVersion = 29
-    targetSdkVersion = compileSdkVersion
+    compileSdkVersion = 32
+    targetSdkVersion = 29
+
+    library_version = "0.11"
 
     rxJava = 'io.reactivex.rxjava2:rxjava:2.2.19'
     junit = 'junit:junit:4.12'

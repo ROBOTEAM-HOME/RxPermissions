@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    namespace "com.tbruyelle.rxpermissions2.sample"
     defaultConfig {
         applicationId "com.tbruyelle.rxpermissions.sample"
         minSdkVersion 14

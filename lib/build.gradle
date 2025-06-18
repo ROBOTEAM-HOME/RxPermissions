@@ -1,8 +1,10 @@
 apply plugin: 'com.android.library'
-apply from: 'jitpack.gradle'
+apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    namespace 'com.tbruyelle.rxpermissions2'
+    compileSdk rootProject.ext.compileSdkVersion
 
     compileOptions {
         sourceCompatibility 1.8
@@ -16,6 +18,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
         }
     }
     testOptions.unitTests.includeAndroidResources = true
@@ -40,6 +48,16 @@ dependencies {
     testImplementation rootProject.ext.khronosOpenGLApi
 }
 
-// Commented to use JitPack instead of bintray
-//apply from: 'install.gradle'
-//apply from: 'bintray.gradle'
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.robotemi'
+                artifactId = 'RxPermissions'
+                version = library_version
+            }
+        }
+    }
+}
